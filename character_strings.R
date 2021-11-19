@@ -21,6 +21,7 @@ unis
 #------------
 
 gsub("Universität","Uni",unis)
+gsub("Universität","",unis)
 stri_replace(unis,fixed="Universität","Uni")
 stri_replace_all(unis,regex="[[:digit:]]","X")
 
@@ -43,7 +44,8 @@ stri_extract_all(unis,regex="\\([[:alpha:]]{1,}\\)")
 # character vektor teilen
 #------------
 
-stri_split(unis,fixed=",")
-
-
+l <- stri_split(unis,fixed=",")
+library(plyr)
+dt <- ldply(l)
+names(dt) <- c("Name","Straße","Stadt")
 
