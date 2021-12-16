@@ -18,7 +18,7 @@ climatetracker <- read_excel('./data/ratings_climateactiontracker.xlsx')
 
 # arithmetisches Mittel
 
-mean(emission$pollution_emission_change)
+mean(emission$pollution_emission_change,na.rm = TRUE)
 
 # Median
 
@@ -40,7 +40,7 @@ modus(climatetracker$rating)
 # Varianz
 #-----
 
-var(emission$pollution_emission_change)
+var(emission$pollution_emission_change,na.rm = TRUE)
 
 
 #-----

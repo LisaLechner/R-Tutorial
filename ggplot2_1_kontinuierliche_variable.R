@@ -18,7 +18,7 @@ emission <- read_excel('./data/epi_pollution_emission.xlsx')
 
 ggplot(emission, aes(pollution_emission_change)) + geom_density()+
   labs(x="Schadstoffemissionsveränderung von 2005 auf 2014",
-       y="Häufigkeit",
+       y="Dichte",
        title="Dichtefunktion der Schadstoffemissionsveränderung",
        subtitle = "Daten stammen von EPI (Yale University)")
 
