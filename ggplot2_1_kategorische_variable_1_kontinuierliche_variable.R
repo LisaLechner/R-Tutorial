@@ -42,9 +42,16 @@ dt <- full_join(emission, climatetracker)
 #------
 # Boxplot
 #------
+ggplot(dt,aes(x=rating,y=pollution_emission_change)) + geom_col()+
+  labs(x="Climate change tracker (Ratings)",
+       y="Schadstoffemissionsveränderung von 2005 auf 2014",
+       title="Schadstoffemission und Ratings durch Climate Change Tracker",
+       subtitle = "Daten stammen von EPI (Yale University) und dem Climate Change Tracker")
+
+
 
 dt %>% filter(!is.na(rating)) %>%
-ggplot(aes(rating,pollution_emission_change)) + geom_col()+
+ggplot(aes(rating,pollution_emission_change)) + geom_col(width=0.1)+
   labs(x="Climate change tracker (Ratings)",
        y="Schadstoffemissionsveränderung von 2005 auf 2014",
        title="Schadstoffemission und Ratings durch Climate Change Tracker",
@@ -53,6 +60,7 @@ ggplot(aes(rating,pollution_emission_change)) + geom_col()+
 #------
 # Boxplot
 #------
+dt$rating <- factor(dt$rating,levels=c("almost sufficient","Insufficient","critically insufficient","highly insufficient"))
 
 dt %>% filter(!is.na(rating)) %>%
   ggplot(aes(rating,pollution_emission_change)) + geom_boxplot()+

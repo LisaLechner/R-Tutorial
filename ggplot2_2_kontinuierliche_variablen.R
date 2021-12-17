@@ -41,7 +41,7 @@ dt <- left_join(emission, gdp)
 # Punktediagramm
 #------
 
-ggplot(dt, aes(pollution_emission_change,gdp)) + geom_point()+
+ggplot(dt, aes(x=pollution_emission_change,y=gdp)) + geom_point()+
   labs(x="Schadstoffemissionsveränderung von 2005 auf 2014",
        y="Brutto-Inlandsprodukt",
        title="Korrelation von Schadstoffemission und BIP",
@@ -58,7 +58,8 @@ ggplot(dt, aes(pollution_emission_change,gdp_ln)) + geom_point()+
 # Geom Smooth
 #------
 
-ggplot(dt, aes(pollution_emission_change,gdp_ln)) + geom_point()+
+ggplot(dt, aes(pollution_emission_change,gdp_ln)) + 
+  geom_point()+
   geom_smooth()+
   labs(x="Schadstoffemissionsveränderung von 2005 auf 2014",
        y="Brutto-Inlandsprodukt (logarithmiert)",
@@ -79,19 +80,29 @@ ggplot(dt, aes(pollution_emission_change,gdp_ln)) + geom_point()+
 # Beschriftung
 #------
 
-ggplot(dt, aes(pollution_emission_change,gdp_ln)) + geom_text(aes(label=iso3c))+
+ggplot(dt, aes(pollution_emission_change,gdp_ln,label=iso3c)) + 
+  geom_text()+
   geom_quantile()+
   labs(x="Schadstoffemissionsveränderung von 2005 auf 2014",
        y="Brutto-Inlandsprodukt (logarithmiert)",
        title="Korrelation von Schadstoffemission und BIP",
        subtitle = "Daten stammen von EPI (Yale University) und der Weltbank")
 
+ggplot(dt, aes(pollution_emission_change,gdp_ln)) + 
+  geom_label(aes(label=iso3c))+
+  geom_quantile()+
+  labs(x="Schadstoffemissionsveränderung von 2005 auf 2014",
+       y="Brutto-Inlandsprodukt (logarithmiert)",
+       title="Korrelation von Schadstoffemission und BIP",
+       subtitle = "Daten stammen von EPI (Yale University) und der Weltbank")
+
+
 dt <- dt %>% mutate(label=ifelse(dt$pollution_emission_change>53|
                                    dt$pollution_emission_change<(-50),
                                  as.character(iso3c),""))
 
 ggplot(dt, aes(pollution_emission_change,gdp_ln)) + 
-  geom_point(alpha=0.4)+
+  geom_point(alpha=0.4,size=1,color="red")+
   geom_text(aes(label=label))+
   #geom_quantile()+
   labs(x="Schadstoffemissionsveränderung von 2005 auf 2014",

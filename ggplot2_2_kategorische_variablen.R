@@ -28,6 +28,7 @@ polity <- polity %>% rename(iso3c=scode) %>%
 
 dt <- full_join(polity,climatetracker)
 
+table(dt$polity2_category,dt$rating)
 
 #------
 # Count
@@ -43,6 +44,8 @@ ggplot( aes(rating,polity2_category)) + geom_count()+
 #------
 # Jitter
 #------
+dt$polity2_category <- factor(dt$polity2_category,levels=c("democracy","transition","autocracy"))
+
 dt %>% dplyr::filter(!is.na(polity2_category),!is.na(rating)) %>%
   ggplot( aes(rating,polity2_category)) + geom_jitter()+
   labs(x="Climate Change Tracker Rating",

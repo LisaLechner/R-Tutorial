@@ -12,11 +12,9 @@ theme_set(theme_minimal())
 # Einlesen der kategorischen Variable (Quelle: Climate Change Tracker: https://climateactiontracker.org/)
 climatetracker <- read_excel('./data/ratings_climateactiontracker.xlsx')
 
-
 #------
-# Dichtefunktion
+# Barchart
 #------
-
 
 ggplot(climatetracker, aes(rating)) + geom_bar()+
   labs(x="INDC Zugeständnisse",
