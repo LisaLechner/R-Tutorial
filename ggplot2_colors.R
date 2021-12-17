@@ -62,15 +62,15 @@ dt <- full_join(dt,gdp)
 
 dt %>% dplyr::filter(!is.na(polity2_category)) %>%
   ggplot( aes(pollution_emission_change,gdp_ln)) + 
-  geom_point(color="darkolivegreen")+
+  geom_point(color="red")+
   labs(x="Schadstoffaustoßveränderung zw 2005 und 2014",
        y="BIP (logarithmiert)",
        title="BIP und Schadstoffausstoßveränderung 2005 bis 2014",
        subtitle = "Daten stammen von EPI (University Yale) und Polity IV Projekt")
 
 dt %>% dplyr::filter(!is.na(polity2_category)) %>%
-  ggplot( aes(pollution_emission_change,gdp_ln,color=polity2_category)) + 
-  geom_point()+
+  ggplot( aes(pollution_emission_change,gdp_ln)) + 
+  geom_point(aes(color=polity2_category))+
   labs(x="Schadstoffaustoßveränderung zw 2005 und 2014",
        y="BIP (logarithmiert)",
        title="BIP und Schadstoffausstoßveränderung 2005 bis 2014",

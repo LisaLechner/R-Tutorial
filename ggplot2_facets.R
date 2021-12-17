@@ -68,7 +68,7 @@ dt %>% dplyr::filter(!is.na(polity2_category),!is.na(rating)) %>%
 
 
 #-------
-# facet_grid
+# facet_wrap
 #-------
 dt %>% dplyr::filter(!is.na(rating)) %>%
   ggplot( aes(pollution_emission_change)) + 
