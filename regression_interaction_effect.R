@@ -9,7 +9,6 @@ library(marginaleffects)
 #--------
 dt_panel <- read_csv('./data/merged_so2_trade.csv')
 
-# Cross-Section Datensatz
 
 dt_panel <- dt_panel %>%
   mutate(gdp_ln=log(gdp),

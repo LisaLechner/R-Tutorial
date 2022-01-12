@@ -45,11 +45,13 @@ plot(model2)
 summary(model2)
 
 # Autokorrelation
+par(mfrow = c(1, 1))
 acf(resid(model2), main="Autokorrelation in Modell 2")
 
 #---------
 # Korrektur der Autokorrelation durch Fixed Effects
 #---------
+unique(dt$iso3c)
 
 model1 <- lm(pm5_gdp_ln~trade_gdp+as.factor(iso3c),data=dt)
 summary(model1)
