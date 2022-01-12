@@ -87,7 +87,8 @@ dt <- full_join(dt,trade)
 str(dt)
 
 dt <- dt %>% filter(year>1945) %>%
-  mutate(gdp=as.numeric(gdp),
+  mutate(so2 = ifelse(so2 < 0, NA,so2),
+         gdp=as.numeric(gdp),
          pm5_gdp=as.numeric(pm5_gdp),
          trade_gdp=as.numeric(trade_gdp)) %>%
   mutate(so2pc = so2/gdp)
